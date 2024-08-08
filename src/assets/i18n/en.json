@@ -1,0 +1,80 @@
+{
+  "language":"en",
+  "User": {
+    "title":"Home",
+    "Create-user": {
+      "title":"Create new user",
+      "name": "name",
+      "surname": "surname",
+      "email": "email: mail@mail.com",
+      "father": "father",
+      "salary": "salary",
+      "add-user": "Add user"
+    },
+
+    "Update-user": {
+      "title":"Update user",
+      "name": "name",
+      "surname": "surname",
+      "email": "email",
+      "father": "father",
+      "salary": "salary",
+      "update-user": "Update user"
+    },
+    "Delete-user": {
+      "name": "name",
+      "surname": "surname",
+      "email": "email",
+      "father": "father",
+      "salary": "salary",
+      "delete-user": "Delete user",
+      "yes": "Yes",
+      "no": "No",
+      "message":"Do u want to delete this user by?"
+    },
+    "search": {
+      "title": "Search"
+    },
+    "table": {
+      "name": "Name",
+      "surname": "Surname",
+      "email": "E-mail",
+      "father": "Father",
+      "salary": "Salary",
+      "delete": "Delete",
+      "update": "Update"
+    },
+    "left-sidebar": {
+      "search": {
+        "placeholder": "Search"
+      },
+      "menu": {
+        "title": "Menu",
+        "home": {
+          "title": "Home"
+        },
+        "create-user": {
+          "title": "Create user"
+        }
+      },
+      "chart": {
+        "title": "Diagram",
+        "user-chart": {
+          "title": "User diagram"
+        },
+        "user-statistic": {
+          "title": "User statistic"
+        }
+        
+      }
+    },
+
+    "validator": {
+      "required": "Must be fill",
+      "minLength-1": "Must be minimum 1 symbol",
+      "minLength-3": "Must be minimum 3 symbols",
+      "email": "Email format is wrong",
+      "positive-number":"Only positive numbers"
+    }
+  }
+}

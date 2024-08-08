@@ -1,0 +1,116 @@
+<title>{{ "User.Create-user.title" | translate }}</title>
+<div class="container justify-content-center">
+  <div class="d-flex flex-column">
+    <form #userForm="ngForm" class="user-form flex-column">
+      <label for="name"></label>
+      <input
+        placeholder="{{ 'User.Create-user.name' | translate }}"
+        type="text"
+        class="form-control"
+        name="name"
+        [(ngModel)]="user.name"
+        id="name"
+        #name="ngModel"
+        required
+        minlength="3"
+      />
+      <div
+        *ngIf="name.invalid && (name.dirty || name.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="name?.errors?.['required']">
+          {{ "User.validator.required" | translate }}
+        </div>
+        <div *ngIf="name?.errors?.['minlength']">
+          {{ "User.validator.minLength-3" | translate }}
+        </div>
+      </div>
+      <label for="surname"></label>
+      <input
+        placeholder="{{ 'User.Create-user.surname' | translate }}"
+        type="text"
+        class="form-control"
+        name="surname"
+        [(ngModel)]="user.surname"
+        id="surname"
+        #surname="ngModel"
+        required
+        minlength="3"
+      />
+      <div
+        *ngIf="surname.invalid && (surname.dirty || surname.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="surname?.errors?.['required']">
+          {{ "User.validator.required" | translate }}
+        </div>
+        <div *ngIf="surname?.errors?.['minlength']">
+          {{ "User.validator.minLength-3" | translate }}
+        </div>
+      </div>
+      <label for="email"></label>
+      <input
+        placeholder="{{ 'User.Create-user.email' | translate }}"
+        type="text"
+        class="form-control"
+        name="email"
+        [(ngModel)]="user.email"
+        id="email"
+        #email="ngModel"
+        email
+        required
+        pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}"
+      />
+      <div
+        *ngIf="email.invalid && (email.dirty || email.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="email?.errors?.['required']">
+          {{ "User.validator.required" | translate }}
+        </div>
+        <div *ngIf="email?.errors?.['minlength']">
+          {{ "User.validator.minLength-3" | translate }}
+        </div>
+        <div *ngIf="email?.errors?.['email'||'pattern']">
+          {{ "User.validator.email" | translate }}
+        </div>
+      </div>
+      <label for="salary"></label>
+      <input
+        placeholder="{{ 'User.Create-user.salary' | translate }}"
+        type="number"
+        class="form-control"
+        name="salary"
+        [(ngModel)]="user.salary"
+        id="salary"
+        #salary="ngModel"
+        minlength="1"
+        required
+        pattern="^\d{0,10}(\.\d{0,2})?$"
+      />
+      <div
+        *ngIf="salary.invalid && (salary.dirty || salary.touched)"
+        class="alert alert-danger"
+      >
+        <div *ngIf="salary?.errors?.['required']">
+          {{ "User.validator.required" | translate }}
+        </div>
+        <div *ngIf="salary?.errors?.['minlength:1']">
+          {{ "User.validator.minLength-1" | translate }}
+        </div>
+        <div *ngIf="salary?.errors?.['pattern']">
+          {{ 'User.validator.positive-number' | translate }}
+        </div>
+      </div>
+      <button
+        [disabled]="!userForm.valid"
+        type="submit"
+        i18n
+        class="btn btn-primary"
+        (click)="create(user)"
+      >
+        {{ "User.Create-user.add-user" | translate }}
+      </button>
+    </form>
+  </div>
+</div>

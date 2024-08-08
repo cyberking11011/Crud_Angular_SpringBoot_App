@@ -1,0 +1,113 @@
+
+<title>{{'User.title'|translate}}</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+
+ 
+
+<div class="container-fluid">
+  <div class="languages d-flex justify-content-end">
+    <app-languages></app-languages>
+  </div>
+  <div class="serch-form">
+    <label for="search-input"></label>
+
+    <div class="input-group">
+      <input
+        name="search"
+        class="form-control border-end-0 border rounded-pill"
+        type="search"
+        value="search"
+        id="search-input"
+        [(ngModel)]="searchValue"
+        placeholder="{{ 'User.search.title' | translate }}"
+        
+        (input)="searchByName(this.searchValue)"
+      />
+      <span class="input-group-append">
+        <button
+          class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+          type="button"
+        >
+          <mat-icon>search</mat-icon>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <div class="mat-elevation-z8 table table-striped">
+    <table
+      class="table table-striped"
+      mat-table
+      matSort
+      [dataSource]="dataSource"
+    >
+      <!-- Position Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+        <td mat-cell *matCellDef="let user">{{ user.id | translate }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "User.table.name" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.name | translate }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="surname">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "User.table.surname" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.surname }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "User.table.email" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">{{ user.email | translate }}</td>
+      </ng-container>
+      <ng-container matColumnDef="salary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>
+          {{ "User.table.salary" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          {{ user.salary | translate | currency : "₼" }}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="update">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "User.table.update" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <a [routerLink]="['/update-user', user.id]">
+            <mat-icon>edit</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef>
+          {{ "User.table.delete" | translate }}
+        </th>
+        <td mat-cell *matCellDef="let user">
+          <a (click)="openDeleteDialog('800ms', '800ms', user)">
+            <mat-icon>delete</mat-icon>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator
+      [pageSizeOptions]="[10, 15, 20]"
+      showFirstLastButtons="true"
+      aria-label="Select page of users"
+    >
+    </mat-paginator>
+  </div>
+</div>

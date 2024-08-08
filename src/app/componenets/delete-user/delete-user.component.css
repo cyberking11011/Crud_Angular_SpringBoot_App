@@ -1,0 +1,25 @@
+.custom-delete-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  background-color: bisque;
+}
+.confirm-dialog {
+  display: flex;
+  flex-direction: column;
+  border-radius: 5%;
+  /* background-color: bisque; */
+  margin: 0;
+}
+.button-group {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+#btnYes,
+#btnNo {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}

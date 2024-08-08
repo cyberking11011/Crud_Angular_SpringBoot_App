@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  /* justify-content: center; */
+  background-color: beige;
+}
+div#form-group {
+  margin-top: 3rem;
+}
+
+button {
+  display: flex;
+  margin-top: 1rem;
+  min-width: 25rem;
+}

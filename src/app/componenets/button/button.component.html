@@ -1,0 +1,77 @@
+<!-- <div class="button-group">
+  <div class="btn add-user">
+    <a [class]="btn_primary" [routerLink]="['/users']">Home</a>
+  </div>
+  <div class="btn user-list">
+    <a [class]="btn_primary" [routerLink]="['/create-user']">Create New User</a>
+  </div>
+</div> -->
+
+<div class="sidebar-primeng">
+  <p-sidebar [(visible)]="sidebarVisible">
+    <div class="button-group">
+      <div class="search-form">
+        <label for="search-input"></label>
+
+        <div class="input-group">
+          <input
+            name="search"
+            class="form-control border-end-0 border rounded-pill"
+            type="search"
+            id="search-input"
+            placeholder="{{ 'User.search.title' | translate }}"
+            (input)="searchByName($event)"
+          />
+          <span class="input-group-append">
+            <button
+              class="btn btn-outline-secondary bg-white border-bottom-0 border rounded-pill ms-n5"
+              type="button"
+            >
+              <mat-icon>search</mat-icon>
+            </button>
+          </span>
+        </div>
+      </div>
+      <p-tree
+        [value]="filteredNodes"
+        class="hw-full md:w-30rem"
+        filterPlaceholder="{{
+          'User.left-sidebar.search.placeholder' | translate
+        }}"
+      >
+        <ng-template let-parent pTemplate="default">{{
+          parent.label | translate
+        }}</ng-template>
+        <ng-template let-node pTemplate="url">
+          <a [target]="node.target" [href]="node.data">
+            {{ node.label | translate }}</a
+          >
+        </ng-template>
+        <ng-template let-node pTemplate="url">
+          <a [target]="node.target" [href]="node.data">
+            {{ node.label | translate }}</a
+          >
+        </ng-template>
+
+        <ng-template let-parent pTemplate="default">{{
+          parent.label | translate
+        }}</ng-template>
+        <ng-template let-node pTemplate="url">
+          <a [target]="node.target" [href]="node.data">
+            {{ node.label | translate }}
+          </a>
+        </ng-template>
+        <ng-template let-node pTemplate="url">
+          <a [target]="node.target" [href]="node.data">
+            {{ node.label | translate }}
+          </a>
+        </ng-template>
+      </p-tree>
+    </div>
+  </p-sidebar>
+  <p-button
+    (click)="sidebarVisible = true"
+    [hidden]="sidebarVisible"
+    icon="pi pi-align-justify"
+  ></p-button>
+</div>

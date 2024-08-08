@@ -1,0 +1,77 @@
+{
+  "language":"az",
+  "User": {
+    "title":"Əsas səhifə",
+    "Create-user": {
+      "title":"Yeni istifadəçi əlavə et",
+      "name": "ad",
+      "surname": "soyad",
+      "father": "ata",
+      "email": "email: mail@mail.az",
+      "salary": "maaş",
+      "add-user": "İstifadəçi əlavə et"
+    },
+    "Update-user": {
+      "title":"İstifadəçi məlumatlarını yenilə",
+      "name": "ad",
+      "surname": "soyad",
+      "father": "ata",
+      "email": "email",
+      "salary": "maaş",
+      "update-user": "Dəyiş"
+    },
+    "Delete-user": {
+      "name": "ad",
+      "surname": "soyad",
+      "father": "ata",
+      "email": "email",
+      "salary": "maaş",
+      "delete-user": "Sil",
+      "yes": "Bəli",
+      "no": "Xeyr",
+      "message":"Aşağıdakı məlumatları olan istifadəçini silmək istəyirsinizmi?"
+    },
+    "search": {
+      "title": "Axtar"
+    },
+    "table": {
+      "name": "Ad",
+      "surname": "Soyad",
+      "father": "Ata",
+      "email": "E-poçt",
+      "salary": "Maaş",
+      "delete": "Sil",
+      "update": "Dəyiş"
+    },
+    "left-sidebar": {
+      "search": {
+        "placeholder": "Axtar"
+      },
+      "menu": {
+        "title": "Menyu",
+        "home": {
+          "title": "Əsas səhifə"
+        },
+        "create-user": {
+          "title": "İstifadəçi əlavə et"
+        }
+      },
+      "chart": {
+        "title": "Diaqram",
+        "user-chart": {
+          "title": "İstifadəçi diaqramı"
+        },
+        "user-statistic": {
+          "title": "İstifadəçi statistikası"
+        }
+      }
+    },
+    "validator": {
+      "required": "Mütləq doldurulmalıdır",
+      "minLength-1": "Ən az 1 simvoldan ibarət ola bilər",
+      "minLength-3": "Ən az 3 simvoldan ibarət ola bilər",
+      "email": "Email düzgün yazılmayıb",
+      "positive-number":"Ancaq müsbət ədədlər girilə bilər"
+    }
+  }
+}

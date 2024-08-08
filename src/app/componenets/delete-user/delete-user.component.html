@@ -1,0 +1,29 @@
+
+    <div class="custom-delete-container">
+      
+        <div matDialogContent class="confirm-dialog">
+          <p><strong>{{'User.Delete-user.message'|translate}}</strong></p>
+          <p>userID: {{ data.user.id }}</p>
+          <p>{{'User.Delete-user.name'|translate}}: {{ data.user.name }}</p>
+        </div>
+        <div mat-dialog-actions class="button-group">
+          <a
+            mat-button
+            class="btn btn-primary"
+            href="/users"
+            id="btnYes"
+            (click)="deleteUser(data.user.id, data.user)"
+          >
+            {{'User.Delete-user.yes'|translate}}
+        </a>
+          <a
+            mat-button
+            class="btn btn-danger"
+            id="btnNo"
+            (click)="closeDialog()"
+          >
+          {{'User.Delete-user.no'|translate}}
+      </a>
+        </div>
+    </div>
+ 

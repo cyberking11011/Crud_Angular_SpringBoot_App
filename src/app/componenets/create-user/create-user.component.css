@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  background-color: bisque;
+  /* justify-content: center; */
+  padding: 1rem;
+  margin-top: 3rem;
+}
+
+input.form-control {
+  min-width: 25rem;
+}
+button{
+  display: flex;
+  margin-top: 1rem;
+  min-width: 25rem;
+  justify-content: center;
+}
+input::placeholder{
+  opacity:0.5;
+}
