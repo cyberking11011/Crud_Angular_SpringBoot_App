@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: sencha1
+  
+  spring:
+  datasource:
+    url: 'jdbc:postgresql://localhost:5432/sencha_db'
+    username: 'shahriyar'
+    password: '#Shah3271989'
+    driver-class-name: 'org.postgresql.Driver'
+  jpa:
+    database-platform: 'org.hibernate.dialect.PostgreSQLDialect'
+    hibernate:
+      ddl-auto: update
+    show-sql: true  
