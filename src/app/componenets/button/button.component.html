@@ -1,11 +1,3 @@
-<!-- <div class="button-group">
-  <div class="btn add-user">
-    <a [class]="btn_primary" [routerLink]="['/users']">Home</a>
-  </div>
-  <div class="btn user-list">
-    <a [class]="btn_primary" [routerLink]="['/create-user']">Create New User</a>
-  </div>
-</div> -->
 
 <div class="sidebar-primeng">
   <p-sidebar [(visible)]="sidebarVisible">
@@ -43,12 +35,12 @@
           parent.label | translate
         }}</ng-template>
         <ng-template let-node pTemplate="url">
-          <a [target]="node.target" [href]="node.data">
+          <a [target]="node.target" [routerLink]="[node.data]">
             {{ node.label | translate }}</a
           >
         </ng-template>
         <ng-template let-node pTemplate="url">
-          <a [target]="node.target" [href]="node.data">
+          <a [target]="node.target" [routerLink]="[node.data]">
             {{ node.label | translate }}</a
           >
         </ng-template>
@@ -57,12 +49,12 @@
           parent.label | translate
         }}</ng-template>
         <ng-template let-node pTemplate="url">
-          <a [target]="node.target" [href]="node.data">
+          <a [target]="node.target" [routerLink]="[node.data]">
             {{ node.label | translate }}
           </a>
         </ng-template>
         <ng-template let-node pTemplate="url">
-          <a [target]="node.target" [href]="node.data">
+          <a [target]="node.target" [routerLink]="[node.data]">
             {{ node.label | translate }}
           </a>
         </ng-template>
