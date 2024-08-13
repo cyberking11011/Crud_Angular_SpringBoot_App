@@ -9,14 +9,18 @@ import { TranslateService } from '@ngx-translate/core';
 export class LanguagesComponent implements OnInit {
   selectedLang: string = '';
   languages = ['az', 'en'];
-  lang='';
+  lang:number=0;
   
   constructor(private translateService: TranslateService) {
     translateService.setDefaultLang('az');
     translateService.addLangs(this.languages);
   }
   ngOnInit(): void {
-    this.lang!=localStorage.getItem('language');
+   this.languages.forEach(lang=>{
+    if(lang===localStorage.getItem('language')){
+      this.lang=this.languages.indexOf(lang, 0);
+    }
+   })
   }
   changeLanguage(lang: any) {
     this.selectedLang = lang.target.value;

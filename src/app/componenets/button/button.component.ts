@@ -82,6 +82,7 @@ export class ButtonComponent implements OnInit {
             child.label?.toLowerCase().includes(this.searchValue.toLowerCase())
           ) {
             parents.push(parent);
+            this.filteredNodes = parents;
             break;
           }
         }
@@ -90,7 +91,7 @@ export class ButtonComponent implements OnInit {
       }
     }
 
-    this.filteredNodes = parents;
+    
 
     return this.filteredNodes;
   }
