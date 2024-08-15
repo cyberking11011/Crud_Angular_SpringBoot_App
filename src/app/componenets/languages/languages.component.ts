@@ -27,6 +27,5 @@ export class LanguagesComponent implements OnInit {
 
     localStorage.setItem('language', this.selectedLang);
     this.translateService.use(this.selectedLang);
-    window.location.reload();
   }
 }
