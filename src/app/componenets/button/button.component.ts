@@ -17,8 +17,6 @@ export class ButtonComponent implements OnInit {
   sidebarVisible!: boolean;
   filteredNodes: TreeNode[] = [];
 
-  
-
   constructor(
     private nodeService: NodeService,
     private translateService: TranslateService
@@ -71,26 +69,20 @@ export class ButtonComponent implements OnInit {
   }
   searchByName(search: any): TreeNode[] {
     let parents: any[] = [];
-   
+
     this.searchValue = search.target.value;
     let tree = this.translateTree(this.files);
     this.filteredNodes = [];
     for (let parent of tree) {
-      let newParent:TreeNode={...parent};
       if (parent.children) {
         for (let child of parent.children) {
-         if(child.label)
+         
          
           if (
-            child.label.toLowerCase().includes(this.searchValue.toLowerCase())
+            child.label?.toLowerCase().includes(this.searchValue.toLowerCase())
           ) {
-            // console.log(`child`, child);
-            newParent.children=[];
-            newParent.children?.push(child);
-            
-            parents.push(newParent);
+            parents.push(parent);
             this.filteredNodes = parents;
-            console.log(parents );
             break;
           }
         }
