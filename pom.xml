@@ -37,6 +37,12 @@
 		</java.version>
 	</properties>
 	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>
 				org.springframework.boot
@@ -78,6 +84,12 @@
 				runtime
 			</scope>
 		</dependency>
+		   <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.2</version>
+            <type>jar</type>
+        </dependency>
 		<dependency>
 			<groupId>
 				org.projectlombok

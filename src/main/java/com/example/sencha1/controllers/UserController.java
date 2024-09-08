@@ -5,15 +5,20 @@
 package com.example.sencha1.controllers;
 
 import com.example.sencha1.entities.User;
+import com.example.sencha1.services.ExcelService;
 import com.example.sencha1.services.UserService;
 
+import java.io.File;
 import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -38,6 +44,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     UserService userService;
+    ExcelService excelService;
 
     @PostMapping
     public ResponseEntity<User> create(@RequestBody User user) {
@@ -79,5 +86,13 @@ public class UserController {
     @DeleteMapping("{id}")
     public ResponseEntity<User> delete(@PathVariable(name = "id") UUID id) {
         return ResponseEntity.ok(userService.deleteUser(id));
+    }
+
+    @GetMapping(value = "/export-excel")
+    public ResponseEntity<File> exportExcel(
+        @RequestParam("search") String search,
+        @RequestBody List<String> headers) {
+            
+        return ResponseEntity.ok(excelService.exportExcel(search, headers));
     }
 }
