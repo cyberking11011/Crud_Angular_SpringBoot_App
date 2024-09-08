@@ -30,6 +30,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { LanguagesComponent } from './componenets/languages/languages.component';
 import { TreeDragDropService } from 'primeng/api';
 import { NgTemplateOutlet } from '@angular/common';
+import { NgxPrintModule } from 'ngx-print';
 
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
   return new TranslateHttpLoader(http);
@@ -65,8 +66,6 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     StyleClassModule,
     TreeModule,
     ChartModule,
-    
-
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -74,8 +73,12 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
         deps: [HttpClient],
       },
     }),
+    NgxPrintModule
   ],
-  providers: [HttpClient, TreeDragDropService],
+  providers: [HttpClient, TreeDragDropService,{
+    provide:Window,
+    useValue:window
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

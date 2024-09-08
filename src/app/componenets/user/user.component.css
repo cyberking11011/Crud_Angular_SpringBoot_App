@@ -1,14 +1,10 @@
-
 .container.mx-0 {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
   background-color: bisque;
   margin-top: 4rem;
-  
 }
-
-
 
 th {
   background-color: burlywood;
@@ -17,4 +13,25 @@ th {
 
 .ms-n5 {
   margin-left: -3rem;
+}
+
+@media print {
+  .page-title{
+    font-size: 30px;
+    color: purple;
+  }
+  .search-form{
+    display: none;
+  }
+  .update-column,
+  .delete-column {
+    display: none;
+  }
+
+  .btnPrint {
+    display: none;
+  }
+  .paginator {
+    display: none;
+  }
 }

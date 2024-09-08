@@ -21,6 +21,7 @@ import { I18NHtmlParser } from '@angular/compiler';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
+
   users: UserModel[] = [];
   user: UserModel = {
     id: '',
@@ -45,9 +46,11 @@ export class UserComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
 
   constructor(
+    private window:Window,
     private userService: UserService,
     private router: Router,
-    private deleteDialog: MatDialog
+    private deleteDialog: MatDialog,
+    
   ) {}
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -61,9 +64,9 @@ export class UserComponent implements OnInit {
     return this.userService
       .getUsers()
       .then((result) => {
-        result;
+       this.users= result;
 
-        this.dataSource = new MatTableDataSource(result);
+        this.dataSource = new MatTableDataSource(this.users);
 
         this.dataSource.paginator = this.paginator;
         this.dataSource.sort = this.sort;
@@ -95,4 +98,11 @@ export class UserComponent implements OnInit {
       exitAnimationDuration,
     });
   }
+
+ printUser(){
+  this.window.print();
+ }
+ pdfGenerator(){
+  
+ }
 }
