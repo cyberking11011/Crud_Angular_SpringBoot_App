@@ -1,19 +1,18 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserModel } from 'src/app/models/user-model';
 import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { MatSort } from '@angular/material/sort';
 import {
   MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-  MatDialogTitle,
 } from '@angular/material/dialog';
-import { Dialog } from '@angular/cdk/dialog';
 import { DeleteUserComponent } from '../delete-user/delete-user.component';
-import { I18NHtmlParser } from '@angular/compiler';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { style } from '@angular/animations';
+
 
 @Component({
   selector: 'app-user',
@@ -21,7 +20,6 @@ import { I18NHtmlParser } from '@angular/compiler';
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
-
   users: UserModel[] = [];
   user: UserModel = {
     id: '',
@@ -46,12 +44,14 @@ export class UserComponent implements OnInit {
   dataSource!: MatTableDataSource<any>;
 
   constructor(
-    private window:Window,
+    private window: Window,
     private userService: UserService,
     private router: Router,
-    private deleteDialog: MatDialog,
+    private deleteDialog: MatDialog
+  ) {
+   
     
-  ) {}
+  }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
     return this.userService
       .getUsers()
       .then((result) => {
-       this.users= result;
+        this.users = result;
 
         this.dataSource = new MatTableDataSource(this.users);
 
@@ -99,10 +99,19 @@ export class UserComponent implements OnInit {
     });
   }
 
- printUser(){
-  this.window.print();
- }
- pdfGenerator(){
-  
- }
+  printUser() {
+    this.window.print();
+  }
+  pdfGenerator() {
+    
+    let pdf = new jsPDF('p', 'pt', 'a4');
+
+    pdf.setFont('Roboto-Regular','normal');
+    
+    autoTable(pdf, { html: '#user-table' });
+   
+    pdf.save('home.pdf');
+    
+
+  }
 }

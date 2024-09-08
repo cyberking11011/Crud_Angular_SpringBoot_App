@@ -46,6 +46,7 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     DeleteUserComponent,
     ChartsComponent,
     LanguagesComponent,
+    
   ],
   imports: [
     BrowserModule,
