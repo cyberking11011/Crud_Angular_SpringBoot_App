@@ -2,24 +2,18 @@ package com.example.sencha1.services;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import javax.swing.plaf.ColorUIResource;
-
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
-import org.apache.poi.ss.usermodel.Color;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import com.example.sencha1.entities.User;
 
@@ -37,12 +31,12 @@ public class ExcelService implements IExcelService {
     UserService userService;
 
     @Override
-    public File exportExcel(String userName, List<String> headers) {
+    public File exportExcel(String userName,String path,String fileName, List<String> headers) {
         int i = 0;
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy" + "-HH-MM-SS");
         LocalDateTime date = LocalDateTime.now();
-        File excel = new File("Users-" + date.format(dateFormat) + ".xlsx");
+        File excel = new File(path+"/"+fileName + date.format(dateFormat) + ".xlsx");
 
         // Get all filtered data
         List<User> users = userService.findUsersByName(userName);

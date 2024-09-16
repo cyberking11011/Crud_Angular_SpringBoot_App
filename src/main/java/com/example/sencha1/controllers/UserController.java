@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.example.sencha1.controllers;
 
 import com.example.sencha1.entities.User;
@@ -15,10 +11,9 @@ import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import org.springframework.core.io.ByteArrayResource;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -88,11 +82,13 @@ public class UserController {
         return ResponseEntity.ok(userService.deleteUser(id));
     }
 
-    @GetMapping(value = "/export-excel")
+    @PostMapping(value = "/export-excel")
     public ResponseEntity<File> exportExcel(
         @RequestParam("search") String search,
+        @RequestParam("path") String path,
+        @RequestParam("file_name") String fileName,
         @RequestBody List<String> headers) {
             
-        return ResponseEntity.ok(excelService.exportExcel(search, headers));
+        return ResponseEntity.ok(excelService.exportExcel(search,path,fileName,headers));
     }
 }
