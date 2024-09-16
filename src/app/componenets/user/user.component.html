@@ -3,13 +3,33 @@
 
 <div class="container-fluid">
   <!-- Print button -->
-  <button class="btnPrint" (click)="printUser()" >
-    <mat-icon>print</mat-icon>
+  <button class="btnPrint" (click)="printUser()">
+    <img
+      width="32"
+      height="32"
+      src="https://img.icons8.com/color/32/print.png"
+      alt="print"
+    />
   </button>
-   <!-- PDF button -->
-   <button class="btnPrint" (click)="pdfGenerator()" >
-    <mat-icon>description</mat-icon>
+  <!-- PDF button -->
+  <button class="btnPdf" (click)="pdfGenerator()">
+    <img
+      width="32"
+      height="32"
+      src="https://img.icons8.com/color/32/pdf.png"
+      alt="pdf"
+    />
   </button>
+  <!-- Excel button -->
+    <button type="submit" class="btnExcel" (click)="excelGenerator(searchValue,'',fileName)">
+    <img
+      width="32"
+      height="32"
+      src="https://img.icons8.com/color/32/ms-excel.png"
+      alt="ms-excel"
+    />
+  </button>
+
 
   <!-- Language -->
   <div class="languages d-flex justify-content-end">
@@ -41,9 +61,9 @@
   </div>
   <!-- Print -->
 
-  <div  class="mat-elevation-z8 table table-striped">
-    <table 
-    id="user-table"
+  <div class="mat-elevation-z8 table table-striped">
+    <table
+      id="user-table"
       class="table table-striped"
       mat-table
       matSort
@@ -113,7 +133,7 @@
 
     <mat-paginator
       class="paginator"
-      [pageSizeOptions]="[10, 15, 20,(users.length)]"
+      [pageSizeOptions]="[10, 15, 20, users.length]"
       showFirstLastButtons="true"
       aria-label="Select page of users"
     >
