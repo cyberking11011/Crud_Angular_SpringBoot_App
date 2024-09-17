@@ -4,14 +4,14 @@ import com.example.sencha1.entities.User;
 import com.example.sencha1.services.ExcelService;
 import com.example.sencha1.services.UserService;
 
-import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -83,12 +83,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/export-excel")
-    public ResponseEntity<File> exportExcel(
-        @RequestParam("search") String search,
-        @RequestParam("path") String path,
-        @RequestParam("file_name") String fileName,
-        @RequestBody List<String> headers) {
-            
-        return ResponseEntity.ok(excelService.exportExcel(search,path,fileName,headers));
+    public ResponseEntity<InputStreamResource> exportExcel(
+            @RequestParam("search") String search,
+            @RequestParam("path") String path,
+            @RequestParam("file_name") String fileName,
+            @RequestBody List<String> tableHeaders) throws IOException {
+
+        return ResponseEntity.ok(excelService.exportExcel(search, path, fileName, tableHeaders));
     }
 }

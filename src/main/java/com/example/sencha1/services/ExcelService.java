@@ -1,7 +1,8 @@
 package com.example.sencha1.services;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -14,6 +15,8 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Service;
 import com.example.sencha1.entities.User;
 
@@ -31,12 +34,12 @@ public class ExcelService implements IExcelService {
     UserService userService;
 
     @Override
-    public File exportExcel(String userName,String path,String fileName, List<String> headers) {
+    public InputStreamResource exportExcel(String userName, String path, String fileName, List<String> headers) {
         int i = 0;
 
         DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy" + "-HH-MM-SS");
         LocalDateTime date = LocalDateTime.now();
-        File excel = new File(path+"/"+fileName + date.format(dateFormat) + ".xlsx");
+        File excel = new File(path + "/" + fileName + date.format(dateFormat) + ".xlsx");
 
         // Get all filtered data
         List<User> users = userService.findUsersByName(userName);
@@ -87,17 +90,27 @@ public class ExcelService implements IExcelService {
             }
         }
         // Write to excel
-
+        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            FileOutputStream fos = new FileOutputStream(excel);
-            workbook.write(fos);
+
+            // FileOutputStream fos = new FileOutputStream(excel);
+            // workbook.write(fos);
+            // workbook.close();
+
+            workbook.write(bos);
             workbook.close();
 
         } catch (Exception e) {
-            e.getMessage();
+            e.printStackTrace();
         }
+        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
+        InputStreamResource resource = new InputStreamResource(bis);
 
-        return excel;
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName + ".xlsx");
+        httpHeaders.add(HttpHeaders.CONTENT_TYPE, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+
+        return resource;
     }
 
 }
