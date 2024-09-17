@@ -23,14 +23,26 @@ th {
   .search-form{
     display: none;
   }
-  .update-column,
-  .delete-column {
+  .update-column-header,
+  .update-column-cell,
+  .delete-column-header,
+  .delete-column-cell {
     display: none;
   }
 
   .btnPrint {
     display: none;
   }
+  .btnPdf{
+    display: none;
+  }
+  .btnExcel{
+    display: none;
+  }
+  mat-icon{
+    display: none;
+  }
+  
   .paginator {
     display: none;
   }
