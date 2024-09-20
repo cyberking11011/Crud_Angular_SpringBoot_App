@@ -13,14 +13,15 @@ export class ExportExcelService {
 
   headers = ['ID', 'Name', 'Surname', 'Email', 'Salary'];
 
-  exportExcel(search: string, path: string, fileName: string): Observable<void> {
+  exportExcel(search: string, path: string, fileName: string): Observable<any> {
     // const headers=new HttpHeaders()
     // .set('ID','ID')
     // .set('Name','Name')
     // .set('Surname','Surname')
     // .set('Email','Email')
     // .set('Salary','Salary');
-
+    const header=new HttpHeaders()
+    .set('Access-Control-Allow-Origin', 'http://localhost:4200' );
     const params = new HttpParams()
       .set('search', search)
       .set('path', path)
@@ -29,6 +30,7 @@ export class ExportExcelService {
     return this.http
       .post('http://localhost:8080/api/v1/users/export-excel', this.headers, {
         params: params,
+        headers:header,
         responseType: 'blob',
       }).pipe(
         map(blob => {

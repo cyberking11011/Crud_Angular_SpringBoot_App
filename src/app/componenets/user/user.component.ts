@@ -13,6 +13,7 @@ import { ExportExcelService } from 'src/app/services/export-excel.service';
 import { saveAs } from '@progress/kendo-file-saver';
 import { WorkBook, writeXLSX } from 'xlsx';
 import autoTable from 'jspdf-autotable';
+import { HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-user',
@@ -30,7 +31,7 @@ export class UserComponent implements OnInit {
   };
 
   searchValue: string = '';
-  path: string = '';
+  path: string = 'path/to';
   fileName:string='export-excel_'+new Date();
 
   displayedColumns: string[] = [
@@ -124,6 +125,7 @@ export class UserComponent implements OnInit {
     this.excelService
       .exportExcel(search, path,fileName)
       .subscribe((excel) => {
+       
         
        
       });
