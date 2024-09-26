@@ -52,12 +52,12 @@ export class ButtonComponent implements OnInit {
           }
           if (child.children) {
             for (let grandchild of child.children) {
-              if(grandchild.label){
+              if (grandchild.label) {
                 this.translateService
-                .get(grandchild.label)
-                .subscribe((translatedGrandChild)=>{
-                  grandchild.label=translatedGrandChild;
-                })
+                  .get(grandchild.label)
+                  .subscribe((translatedGrandChild) => {
+                    grandchild.label = translatedGrandChild;
+                  });
               }
             }
           }
@@ -73,26 +73,52 @@ export class ButtonComponent implements OnInit {
     this.searchValue = search.target.value;
     let tree = this.translateTree(this.files);
     this.filteredNodes = [];
-    for (let parent of tree) {
-      if (parent.children) {
-        for (let child of parent.children) {
-         
-         
-          if (
-            child.label?.toLowerCase().includes(this.searchValue.toLowerCase())
-          ) {
-            parents.push(parent);
-            this.filteredNodes = parents;
-            break;
-          }
+
+    if (this.searchValue === '' || this.searchValue === null) {
+      this.filteredNodes = tree;
+      return this.filteredNodes;
+    } else {
+      for (let parent of tree) {
+        if (
+          parent.label?.toLowerCase().includes(this.searchValue.toLowerCase())
+        ) {
+          parents.push(parent);
+          this.filteredNodes = parents;
+          break;
         }
+        if (parent.children)
+          for (let child of parent.children) {
+            if (
+              child.label
+                ?.toLowerCase()
+                .includes(this.searchValue.toLowerCase())
+            ) {
+              parents.push(parent);
+              this.filteredNodes = parents;
+              break;
+            }
 
-        continue;
+            if (child.children)
+              for (let grandChild of child.children) {
+                if (
+                  grandChild.label
+                    ?.toLowerCase()
+                    .includes(this.searchValue.toLowerCase())
+                ) {
+                  parents.push(parent);
+                  this.filteredNodes = parents;
+                  break;
+                }
+              }
+          }
       }
+      parents.push(this.filteredNodes);
+      return this.filteredNodes;
     }
+  }
+  sidebarVisibility(): boolean {
+    this.sidebarVisible = true;
 
-    
-
-    return this.filteredNodes;
+    return this.sidebarVisible;
   }
 }

@@ -1,6 +1,5 @@
-
 <div class="sidebar-primeng">
-  <p-sidebar [(visible)]="sidebarVisible">
+  <p-sidebar  [(visible)]="sidebarVisible">
     <div class="button-group">
       <div class="search-form">
         <label for="search-input"></label>
@@ -24,7 +23,8 @@
           </span>
         </div>
       </div>
-      <p-tree
+      <p-tree 
+        
         [value]="filteredNodes"
         class="hw-full md:w-30rem"
         filterPlaceholder="{{
@@ -62,7 +62,7 @@
     </div>
   </p-sidebar>
   <p-button
-    (click)="sidebarVisible = true"
+    (click)="sidebarVisibility()"
     [hidden]="sidebarVisible"
     icon="pi pi-align-justify"
   ></p-button>

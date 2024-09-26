@@ -113,6 +113,7 @@ export class UserComponent implements OnInit {
     pdf.setFont('robotoBlack', 'normal');
 
     autoTable(pdf, { html: '#user-table' ,styles:{
+    
        font: 'robotoBlack'
     }});
    
