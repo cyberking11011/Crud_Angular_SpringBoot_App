@@ -1,9 +1,11 @@
-.container.mx-0 {
+.container-fluid {
   display: flex;
   flex-direction: column;
+
   /* justify-content: center; */
   background-color: bisque;
   margin-top: 4rem;
+  min-width: 672px;
 }
 
 th {
@@ -16,11 +18,11 @@ th {
 }
 
 @media print {
-  .page-title{
+  .page-title {
     font-size: 30px;
     color: purple;
   }
-  .search-form{
+  .search-form {
     display: none;
   }
   .update-column-header,
@@ -33,16 +35,16 @@ th {
   .btnPrint {
     display: none;
   }
-  .btnPdf{
+  .btnPdf {
     display: none;
   }
-  .btnExcel{
+  .btnExcel {
     display: none;
   }
-  mat-icon{
+  mat-icon {
     display: none;
   }
-  
+
   .paginator {
     display: none;
   }

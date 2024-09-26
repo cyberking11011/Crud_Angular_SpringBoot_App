@@ -2,43 +2,48 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
 
 <div class="container-fluid">
-  <!-- Print button -->
-  <button class="btnPrint" (click)="printUser()">
-    <img
-      width="32"
-      height="32"
-      src="https://img.icons8.com/color/32/print.png"
-      alt="print"
-    />
-  </button>
-  <!-- PDF button -->
-  <button class="btnPdf" (click)="pdfGenerator()">
-    <img
-      width="32"
-      height="32"
-      src="https://img.icons8.com/color/32/pdf.png"
-      alt="pdf"
-    />
-  </button>
-  <!-- Excel button -->
-    <button type="submit" class="btnExcel" (click)="excelGenerator(searchValue,path,fileName)">
-      
-    <img
-      width="32"
-      height="32"
-      src="https://img.icons8.com/color/32/ms-excel.png"
-      alt="ms-excel"
-    />
-  </button>
+  
+  <div class="button-group">
+    <!-- Print button -->
+    <button class="btnPrint" (click)="printUser()">
+      <img
+        width="32"
+        height="32"
+        src="https://img.icons8.com/color/32/print.png"
+        alt="print"
+      />
+    </button>
+    <!-- PDF button -->
+    <button class="btnPdf" (click)="pdfGenerator()">
+      <img
+        width="32"
+        height="32"
+        src="https://img.icons8.com/color/32/pdf.png"
+        alt="pdf"
+      />
+    </button>
+    <!-- Excel button -->
+    <button
+      type="submit"
+      class="btnExcel"
+      (click)="excelGenerator(searchValue, path, fileName)"
+    >
+      <img
+        width="32"
+        height="32"
+        src="https://img.icons8.com/color/32/ms-excel.png"
+        alt="excel"
+      />
+    </button>
+  </div>
 
-
-  <!-- Language -->
-  <div class="languages d-flex justify-content-end">
+   <!-- Language -->
+   <div class="languages d-flex justify-content-end">
     <app-languages></app-languages>
   </div>
+ 
+  <!-- Searching on table -->
   <div class="search-form">
-    
-
     <div class="input-group">
       <label for="search-input"></label>
       <input
@@ -105,7 +110,7 @@
         </td>
       </ng-container>
       <div class="update-column">
-        <ng-container matColumnDef="update" >
+        <ng-container matColumnDef="update">
           <th mat-header-cell *matHeaderCellDef class="update-column-header">
             {{ "User.table.update" | translate }}
           </th>
