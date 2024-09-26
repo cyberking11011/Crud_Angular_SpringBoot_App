@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFColor;
@@ -49,19 +51,30 @@ public class ExcelService implements IExcelService {
 
         // Set color
         XSSFColor purple = new XSSFColor(IndexedColors.VIOLET, null);
-        // Cell style
-        CellStyle cellStyle = workbook.createCellStyle();
-        cellStyle.setBorderBottom(BorderStyle.DOUBLE);
-        cellStyle.setBorderRight(BorderStyle.DASHED);
-        cellStyle.setBorderLeft(BorderStyle.DASHED);
-        cellStyle.setBorderTop(BorderStyle.DASHED);
-        cellStyle.setFillBackgroundColor(purple.getIndex());
+        // Cell header style
+        CellStyle headerCellStyle = workbook.createCellStyle();
+        headerCellStyle.setBorderBottom(BorderStyle.DOUBLE);
+        headerCellStyle.setBorderRight(BorderStyle.DOUBLE);
+        headerCellStyle.setBorderLeft(BorderStyle.DOUBLE);
+        headerCellStyle.setBorderTop(BorderStyle.DOUBLE);
+        headerCellStyle.setFillBackgroundColor(purple.getIndex());
+        headerCellStyle.setFillPattern(FillPatternType.LESS_DOTS);
+
+        // Cell body style
+        CellStyle bodyCellStyle = workbook.createCellStyle();
+        bodyCellStyle.setBorderBottom(BorderStyle.DOUBLE);
+        bodyCellStyle.setBorderRight(BorderStyle.DOUBLE);
+        bodyCellStyle.setBorderLeft(BorderStyle.DOUBLE);
+        bodyCellStyle.setBorderTop(BorderStyle.DOUBLE);
+        // bodyCellStyle.setFillBackgroundColor(purple.getIndex());
+        bodyCellStyle.setFillPattern(FillPatternType.NO_FILL);
+        
         // Header
         XSSFRow rowHeader = sheet.createRow(0);
         for (String h : headers) {
             XSSFCell cellHeader = rowHeader.createCell(i++);
             cellHeader.setCellValue(h);
-            cellHeader.setCellStyle(cellStyle);
+            cellHeader.setCellStyle(headerCellStyle);
         }
 
         // DATA
@@ -72,7 +85,7 @@ public class ExcelService implements IExcelService {
             int z = 0;
             for (String h : headers) {
                 XSSFCell cellData = rowData.createCell(z++);
-                cellData.setCellStyle(cellStyle);
+                cellData.setCellStyle(bodyCellStyle);
                 switch (z) {
                     case 1 ->
                         cellData.setCellValue(user.getId().toString());

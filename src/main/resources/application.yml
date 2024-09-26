@@ -2,7 +2,7 @@ spring:
   application:
     name: sencha1
   
-  spring:
+  
   datasource:
     url: 'jdbc:postgresql://localhost:5432/sencha_db'
     username: 'shahriyar'
