@@ -2,12 +2,8 @@ package com.example.sencha1.services;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
@@ -39,10 +35,6 @@ public class ExcelService implements IExcelService {
     public InputStreamResource exportExcel(String userName, String path, String fileName, List<String> headers) {
         int i = 0;
 
-        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy" + "-HH-MM-SS");
-        LocalDateTime date = LocalDateTime.now();
-        File excel = new File(path + "/" + fileName + date.format(dateFormat) + ".xlsx");
-
         // Get all filtered data
         List<User> users = userService.findUsersByName(userName);
 
@@ -68,7 +60,7 @@ public class ExcelService implements IExcelService {
         bodyCellStyle.setBorderTop(BorderStyle.DOUBLE);
         // bodyCellStyle.setFillBackgroundColor(purple.getIndex());
         bodyCellStyle.setFillPattern(FillPatternType.NO_FILL);
-        
+
         // Header
         XSSFRow rowHeader = sheet.createRow(0);
         for (String h : headers) {
@@ -83,7 +75,7 @@ public class ExcelService implements IExcelService {
 
             XSSFRow rowData = sheet.createRow(y++);
             int z = 0;
-            for (String h : headers) {
+            for (; i < headers.size(); i++) {
                 XSSFCell cellData = rowData.createCell(z++);
                 cellData.setCellStyle(bodyCellStyle);
                 switch (z) {
