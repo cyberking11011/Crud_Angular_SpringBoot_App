@@ -49,7 +49,7 @@
         id="search-input"
         [(ngModel)]="searchValue"
         placeholder="{{ 'User.search.title' | translate }}"
-        (search)="searchByName(this.searchValue)"
+        (input)="searchByName(this.searchValue)"
       />
       <span class="input-group-append">
         <button

@@ -75,13 +75,20 @@ export class ButtonComponent implements OnInit {
     this.filteredNodes = [];
 
     if (this.searchValue === '' || this.searchValue === null) {
+      tree.forEach(node=>{
+        node.expanded=false;
+      })
       this.filteredNodes = tree;
+      
+    
       return this.filteredNodes;
     } else {
       for (let parent of tree) {
+        
         if (
           parent.label?.toLowerCase().includes(this.searchValue.toLowerCase())
         ) {
+          parent.expanded = true;
           parents.push(parent);
           this.filteredNodes = parents;
           break;
@@ -93,6 +100,8 @@ export class ButtonComponent implements OnInit {
                 ?.toLowerCase()
                 .includes(this.searchValue.toLowerCase())
             ) {
+              parent.expanded = true;
+
               parents.push(parent);
               this.filteredNodes = parents;
               break;
@@ -105,6 +114,8 @@ export class ButtonComponent implements OnInit {
                     ?.toLowerCase()
                     .includes(this.searchValue.toLowerCase())
                 ) {
+                  parent.expanded = true;
+                  child.expanded=true;
                   parents.push(parent);
                   this.filteredNodes = parents;
                   break;
