@@ -50,7 +50,7 @@
               "core-js/modules/web.dom-collections.iterator.js",
               "raf",
               "rgbcolor",
-              "jspdf-autotables"
+              "jspdf-autotable"
             ]
           },
           "configurations": {
