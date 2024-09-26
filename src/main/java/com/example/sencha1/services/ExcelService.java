@@ -75,7 +75,7 @@ public class ExcelService implements IExcelService {
 
             XSSFRow rowData = sheet.createRow(y++);
             int z = 0;
-            for (; i < headers.size(); i++) {
+            for (int h = 0; h < headers.size(); h++) {
                 XSSFCell cellData = rowData.createCell(z++);
                 cellData.setCellStyle(bodyCellStyle);
                 switch (z) {
